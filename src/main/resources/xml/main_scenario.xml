@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<scenarios>
+    <configuration>
+        <format type="json">
+
+        </format>
+        <define name="atmos-operator-count" value="1"/>
+        <define name="audience-per-group" value="1"/>
+    </configuration>
+    <class name="testClass1">
+        <scenario name="testScenario11" description="t s 11 ~" input="ts11.xml" output="ts11.log"/>
+        <scenario name="testScenario12" description="t s 12 ~" input="ts12.xml" output="ts12.log"/>
+        <scenario name="testScenario13" description="t s 13 ~" input="ts13.xml" output="ts13.log"/>
+    </class>
+    <class name="testClass2">
+        <scenario name="testScenario21" description="t s 21 ~" input="ts21.xml" output="ts21.log"/>
+        <scenario name="testScenario22" description="t s 22 ~" input="ts22.xml" output="ts22.log"/>
+    </class>
+</scenarios>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<scenario>
+    <configuration>
+        <source name="local" path="~/scenario/endpoint/local_1"/>
+        <target name="a2s" path="~/scenario/endpoint/a2s_1"/>
+    </configuration>
+    <command name="send">
+        <message type="request">
+            <header>
+                <field name="type" value="group_create_req" />
+                <field name="transactionId" value="*" />
+                <field name="msgFrom" value="*" />
+                <field name="timestamp" value="*" />
+            </header>
+            <body>
+                <field name="groupId" value="TEST_GROUP" />
+            </body>
+        </message>
+    </command>
+    <command name="recv"> # expected action
+        <message type="response" name="group_create_res">  # expected message
+            <field name="groupId" value="TEST_GROUP" />
+            <field name="status_code" value="200" />
+        </message>
+    </command>
+
+    <sleep time="1000" unit="ms" />
+    <command name="send">
+        <message type="request">
+            <header>
+                <field name="type" value="audience_join_req" />
+                <field name="transactionId" value="*" />
+                <field name="msgFrom" value="*" />
+                <field name="timestamp" value="*" />
+            </header>
+            <body>
+                <field name="groupId" value="TEST_GROUP" />
+                <field name="userId" value="TEST_USER" />
+            </body>
+        </message>
+    </command>
+    <command name="recv"> # expected action
+        <message type="response" name="audience_join_res">  # expected message
+            <field name="groupId" value="TEST_GROUP" />
+            <field name="status_code" value="200" />
+        </message>
+    </command>
+
+</scenario>
