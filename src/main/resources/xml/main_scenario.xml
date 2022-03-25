@@ -2,12 +2,46 @@
 
 <scenarios>
     <configuration>
-        <format type="json">
-
-        </format>
+        <message-format path="./src/main/resource/xml/dasddadasd"/>
         <define name="atmos-operator-count" value="1"/>
         <define name="audience-per-group" value="1"/>
+
     </configuration>
+    <message-format type="json">
+        <common-format>
+            <tag name="header">
+                <tag name="type" type="String" requirement="true"/>
+                <tag name="transactionId" type="String" requirement="true"/>
+                <tag name="msgFrom" type="String" requirement="true"/>
+                <tag name="reason" type="String" requirement="false"/>
+                <tag name="reasonCode" type="Integer" requirement="false"/>
+                <tag name="timestamp" type="Date" requirement="true" format="yyyy-MM-dd HH:mm:ss.SSS"/>
+            </tag>
+        </common-format>
+        <message name="group_create_req" type="request">
+            <tag name="body">
+                <tag name="groupId" type="String" requirement="true"/>
+            </tag>
+        </message>
+        <message name="group_create_res" type="response">
+            <tag name="body">
+                <tag name="groupId" type="String" requirement="true"/>
+                <tag name="groupAuthKey" type="String" requirement="true"/>
+                <tag name="maxChannelCount" type="Integer" requirement="true"/>
+                <tag name="reasonCode" type="Integer" requirement="true"/>
+                <tag name="reasonStr" type="String" requirement="false"/>
+            </tag>
+        </message>
+        <message name="channel_create_req" type="request">
+            <tag name="body">
+                <tag name="groupId" type="String" requirement="true"/>
+                <tag name="userId" type="Integer" requirement="true"/>
+                <tag name="groupAuthKey" type="String" requirement="true"/>
+                <tag name="mediaType" type="Integer" requirement="true"/>
+                <tag name="mpdUri" type="String" requirement="false"/>
+            </tag>
+        </message>
+    </message-format>
     <class name="testClass1">
         <scenario name="testScenario11" description="t s 11 ~" input="ts11.xml" output="ts11.log"/>
         <scenario name="testScenario12" description="t s 12 ~" input="ts12.xml" output="ts12.log"/>
